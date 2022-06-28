@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body{
-    background-image: url('./assets/clearBackground.jpg');
+    background-image: url('./assets/desktopBg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 }

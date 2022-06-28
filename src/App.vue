@@ -5,6 +5,7 @@
     <div v-if="homePage" class="main-page">
       <InputForm class="inputForm mt-[20px] mx-auto"/>
       <Result class="mt-[20px] mx-auto"/>
+      <History class="mt-[20px]"/>
 </div>
   </div>
 </template>
@@ -14,11 +15,12 @@ import { RouterLink, RouterView } from 'vue-router'
 import InputForm from './components/InputForm.vue'
 import Result from './components/Result.vue'
 import Logo from './components/Logo.vue'
+import History from './components/History.vue'
 
   export default{
     name: 'App',
     components: {
-      InputForm, Result, Logo
+      InputForm, Result, Logo, History
     },
     data(){
       return {

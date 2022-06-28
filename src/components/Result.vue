@@ -11,9 +11,8 @@ export default {
     props: {
     },
     created(){
-        async function getWeather(){
+        async function getWeather(userInput){
             document.querySelector('.parent-result').classList.remove('show')  
-            const userInput = document.querySelector('.cityName').value
             const lonLatRequest = `https://nominatim.openstreetmap.org/search/${userInput}?format=json`
             const wetherRes = await fetch(lonLatRequest)
             const wetherData = await wetherRes.json()
@@ -33,7 +32,8 @@ export default {
             return
         } 
         if(isItBtn && document.querySelector('.cityName').value !== ''){
-            getWeather()
+            const userInput = document.querySelector('.cityName').value
+            getWeather(userInput)
         }
         else{
             alert('Write the city name in coresponding field')
@@ -43,7 +43,8 @@ export default {
       document.addEventListener('keydown', (e) => {
         if(event.key !== 'Enter'){return}
         if(document.querySelector('.cityName').value !== ''){
-            getWeather()
+            const userInput = document.querySelector('.cityName').value
+            getWeather(userInput)
         }
         else{
             alert('Write the city name in coresponding field')
