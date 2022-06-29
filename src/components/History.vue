@@ -44,15 +44,15 @@ export default {
             document.querySelector('.parent-result').classList.add('show')
             console.log(userInput)  
         }
-        Array.from(document.querySelectorAll('.history-btn')).forEach((element, index) =>
-        element.addEventListener('click', getWeather(this.cities[index].cityName)))
+        Array.from(document.querySelectorAll('.history-btn')).forEach((el, index) => {            
+            el.addEventListener('click', ev => {
+                getWeather(this.cities[index].cityName)
+            })
+        })
 
     },
     methods: {
-        // getWeatherrr(index){
-        //     getWeather('Dubai')
-        //     // console.log(this.cities[index].cityName)
-        // },
+
     }
 }
 </script>
