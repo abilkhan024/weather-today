@@ -1,5 +1,6 @@
 <template>
     <div class="history-parent w-fit mx-auto p-[15px] rounded-[10px] bg-white ">
+    <h1 class="text-[24px] text-center">History</h1>
     <ul class="flex flex-col text-[18px]">
         <li v-for="city in cities" :key="city.id" class="my-[5px]">
         {{city.cityName}}
@@ -14,18 +15,18 @@ export default {
     name: 'History',
     data() {
         return {
-            cities: [
-                {
-                    cityName: 'Dubai'
-                },
-                {
-                    cityName: 'Almaty'
-                },
-                {
-                    cityName: 'Bern'
-                },
-            ]
+            cities: [],
         }
+    },
+    created(){
+        var that = this
+        async function getHistory(){
+            const apiPath = 'http://localhost:8080/cities'
+            const res = await fetch(apiPath)
+            const data = await res.json()
+            that.cities = data
+        }
+        getHistory()
     },
     mounted(){
                 async function getWeather(userInput){
@@ -42,17 +43,17 @@ export default {
             const dataWeather = await responseFromWeather.json();
             document.querySelector('.parent-result').textContent = `${dataWeather.weather[0].main} | ${Number((dataWeather.main.temp-273.15).toFixed(1))}°C`;
             document.querySelector('.parent-result').classList.add('show')
-            console.log(userInput)  
         }
-        Array.from(document.querySelectorAll('.history-btn')).forEach((el, index) => {            
-            el.addEventListener('click', ev => {
-                getWeather(this.cities[index].cityName)
+        setTimeout(() => {
+            Array.from(document.querySelectorAll('.history-btn')).forEach((el, index) => {            
+                el.addEventListener('click', ev => {
+                    getWeather(this.cities[index].cityName)
+                    document.querySelector('.cityName').value = this.cities[index].cityName
+                })
             })
-        })
-
+        }, 100);
     },
     methods: {
-
     }
 }
 </script>

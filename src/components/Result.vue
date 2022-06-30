@@ -11,6 +11,35 @@ export default {
     props: {
     },
     created(){
+        var that = this
+        async function getHistory(){
+            const apiPath = 'http://localhost:8080/cities'
+            const res = await fetch(apiPath)
+            const data = await res.json()
+            that.cities = data
+        }
+        getHistory()
+        async function toHistory(userInput){
+            const apiPath = 'http://localhost:8080/cities'
+            const userInputRequest = {
+                cityName: userInput
+            }
+            const res = await fetch(apiPath, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(userInputRequest)
+            })
+            const data = await res.json()
+            that.cities.push(data)
+        }
+        async function getHistory(){
+            const apiPath = 'http://localhost:8080/cities'
+            const res = await fetch(apiPath)
+            const data = await res.json()
+            that.cities = data
+        }
         async function getWeather(userInput){
             document.querySelector('.parent-result').classList.remove('show')  
             const lonLatRequest = `https://nominatim.openstreetmap.org/search/${userInput}?format=json`
@@ -34,6 +63,10 @@ export default {
         if(isItBtn && document.querySelector('.cityName').value !== ''){
             const userInput = document.querySelector('.cityName').value
             getWeather(userInput)
+            toHistory(userInput)
+            setTimeout(() => {
+                that.$emit('city-added')
+            }, 230);
         }
         else{
             alert('Write the city name in coresponding field')
@@ -45,6 +78,10 @@ export default {
         if(document.querySelector('.cityName').value !== ''){
             const userInput = document.querySelector('.cityName').value
             getWeather(userInput)
+            toHistory(userInput)
+            setTimeout(() => {
+                that.$emit('city-added')
+            }, 230);
         }
         else{
             alert('Write the city name in coresponding field')
@@ -55,7 +92,9 @@ export default {
     methods: {
     },
     data(){
-        return {}
+        return {
+            cities: []
+        }
     }
         
 }

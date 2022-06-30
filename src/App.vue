@@ -4,8 +4,8 @@
     <router-view></router-view>
     <div v-if="homePage" class="main-page">
       <InputForm class="inputForm mt-[20px] mx-auto"/>
-      <Result class="mt-[20px] mx-auto"/>
-      <History class="mt-[20px]"/>
+      <Result class="mt-[20px] mx-auto" @city-added="rerenderListIncrement"/>
+      <History :key="rerenderList" class="mt-[20px]"/>
 </div>
   </div>
 </template>
@@ -24,9 +24,13 @@ import History from './components/History.vue'
     },
     data(){
       return {
+        rerenderList: 0
       }
     },
     methods: {
+      rerenderListIncrement(){
+        this.rerenderList++
+      }
     },
     computed: {
       homePage() {

@@ -1,6 +1,32 @@
 {
-    "lastSearches": {
-        "id": 1,
-        "name": "Dubai"
+  "cities": [
+    {
+      "cityName": "Budapest",
+      "id": 1
+    },
+    {
+      "cityName": "Amherst",
+      "id": 2
+    },
+    {
+      "cityName": "Boston",
+      "id": 3
+    },
+    {
+      "cityName": "Bern",
+      "id": 4
+    },
+    {
+      "cityName": "Bern",
+      "id": 5
+    },
+    {
+      "cityName": "Taraz",
+      "id": 6
+    },
+    {
+      "cityName": "Shu",
+      "id": 7
     }
+  ]
 }
