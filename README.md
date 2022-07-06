@@ -1,5 +1,6 @@
 # weather-today
 Single page application with responsive design that will be comfortable to use on most of the devices.
+User can search for weather in cities and you have history function so user don't have to retype one city name again and again. 
 p.s. it's rebuild of my first project, but using more advanced stack.
 Design:
 ![image](https://user-images.githubusercontent.com/108106341/177461117-81b86f80-d049-46e5-8760-e3edf51f9294.png)
